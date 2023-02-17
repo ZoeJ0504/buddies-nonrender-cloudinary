@@ -18,7 +18,7 @@ function NavBar({ attribution, logout, username, setUser }) {
     }
 
     const handleHomeClick = () => navigate("/home")
-    const handlePetClick = () => navigate("/pets")
+    const handlePetClick = () => navigate("/userspets")
     const handleProfileClick = () => navigate(`/${username}`)
     const handleJobClick = () => navigate("/jobs")
 

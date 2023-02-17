@@ -3,6 +3,7 @@ class UserSerializer < ActiveModel::Serializer
 
   attributes :id, :username, :password_digest, :email, :first_name, :last_name, :city, :state, :attribution, :featured_image
  
+  has_many :pets
 
   def featured_image
     if object.featured_image.attached?

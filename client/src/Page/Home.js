@@ -10,8 +10,8 @@ function Home({ user, setUser }) {
     useEffect(() => {
         user !== undefined ? navigate("/home") : navigate('/')
 
-        console.log(user)
-    }, [user])
+
+    }, [])
 
 
     return (

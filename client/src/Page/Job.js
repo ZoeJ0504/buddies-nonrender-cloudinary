@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-// import Event from "../Components/Event"
+import Event from "../Components/Event"
 
 function Job({ user }) {
     const [events, setEvents] = useState([])
 
-    // useEffect(() => {
-    //     fetch("/events")
-    //         .then(res => res.json())
-    //         .then(data => setEvents(data))
-    // }, [])
+    useEffect(() => {
+        fetch("/events")
+            .then(res => res.json())
+            .then(data => setEvents(data))
+    }, [])
 
-    // const filteredEvents = events.filter(event => event.petsitter_id === null)
+    const filteredEvents = events.filter(event => event.petsitter_id === null)
+
+console.log(filteredEvents)
 
     return (
         <BigDiv>
             <EventsDiv>
-                {/* {filteredEvents.map(event => <Event key={event.id} event={event} user={user} />)} */}
+                {filteredEvents === [] ? <p> No Events Available at this time </p> : filteredEvents.map(event => <Event key={event.id} event={event} user={user} />)}
             </EventsDiv>
         </BigDiv>
     )

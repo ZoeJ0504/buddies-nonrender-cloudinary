@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
-// import NewEvent from "../Components/NewEvent";
+import NewEvent from "../Components/NewEvent";
 import styled from "styled-components";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-// import Event from "../Components/Event"
+import Event from "../Components/Event"
 
 function Profile({ user }) {
     const [isVisible, setIsVisible] = useState(false)
@@ -13,21 +13,34 @@ function Profile({ user }) {
 
     const handleClick = () => setIsVisible(!isVisible)
 
-    // useEffect(() => {
-    //     fetch("/events")
-    //         .then(res => res.json())
-    //         .then(data => setEvents(data))
-    // }, [])
+    useEffect(() => {
+        fetch("/events")
+            .then(res => res.json())
+            .then(data => setEvents(data))
+    }, [])
 
-    // useEffect(() => {
-    //     setOwnerEvents(events.filter(event => event.owner_id === user.id))
-    // }, [events, user])
+    useEffect(() => {
+        setOwnerEvents(events.filter(event => event.owner_id === user.id))
+    }, [events, user])
 
-    // useEffect(() => {
-    //     setPetsitterEvents(events.filter(event => event.petsitter_id === user.id))
-    // }, [events, user])
+    useEffect(() => {
+        setPetsitterEvents(events.filter(event => event.petsitter_id === user.id))
+    }, [events, user])
 
-console.log(user)
+    const handleEventPost = (newEvent) => {
+        fetch("/newevent", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
+            body: JSON.stringify(newEvent)
+        })
+        setOwnerEvents([...ownerEvents, newEvent])
+
+        setIsVisible(!isVisible)
+    }
+
     return (
         <PageDiv>
             <Tabs>
@@ -52,12 +65,12 @@ console.log(user)
                             <div>
                                 <button onClick={handleClick}>Add New Event</button>
                                 <EventDiv>
-                                    {/* {ownerEvents?.map(ownerEvent => <Event key={ownerEvent.id} event={ownerEvent} />)} */}
+                                    {ownerEvents?.map(ownerEvent => <Event key={ownerEvent.id} event={ownerEvent} />)}
                                 </EventDiv>
                             </div>
                         }
-                        {/* {petsitterEvents.map(petsitterEvent => <Event key={petsitterEvent} event={petsitterEvent} />)} */}
-                        {/* {isVisible ? <NewEvent user={user.id} /> : <div> </div>} */}
+                        {petsitterEvents.map(petsitterEvent => <Event key={petsitterEvent} event={petsitterEvent} />)}
+                        {isVisible ? <NewEvent user={user.id} handleEventPost={handleEventPost} /> : <div> </div>}
                     </ProfileDiv>
                 </TabPanel>
             </Tabs>
