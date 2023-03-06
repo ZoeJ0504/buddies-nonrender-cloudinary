@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dlewu2m7d
+  api_key: '955935559357173'
+  api_secret: "6oJ6getSVRoX2DTQczXlvdhBZ1c"
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dlewu2m7d
+  api_key: '955935559357173'
+  api_secret: "6oJ6getSVRoX2DTQczXlvdhBZ1c"
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dlewu2m7d
+  api_key: '955935559357173'
+  api_secret: "6oJ6getSVRoX2DTQczXlvdhBZ1c"
+  enhance_image_tag: true
+  static_file_support: false

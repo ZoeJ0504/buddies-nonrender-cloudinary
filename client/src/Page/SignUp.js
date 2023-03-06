@@ -11,7 +11,7 @@ function SignUp({ setUser, setIsVisible }) {
     }
 
     const onImageChange = (event) => {
-        setNewUser({ ...newUser, featured_image: event.target.files[0] })
+        setNewUser({ ...newUser, user[avatar]: event.target.files[0] })
     }
 
     const handleSubmit = (e) => {
